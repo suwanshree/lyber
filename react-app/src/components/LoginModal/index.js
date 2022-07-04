@@ -8,7 +8,7 @@ function LoginFormModal() {
   return (
     <>
       <button className="login-button" onClick={() => setShowModal(true)}>
-        <i id="nav-icons" class="fa-solid fa-right-to-bracket"></i>
+        <i id="nav-icons" className="fa-solid fa-right-to-bracket"></i>
         <p id="nav-text">Login</p>
       </button>
       {showModal && (

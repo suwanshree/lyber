@@ -16,7 +16,7 @@ const NavBar = () => {
       <ul className="logged-in-nav">
         <li className="listings-button" id="nav-buttons">
           <NavLink to="/main" exact={true} className="listings">
-            <i id="nav-icons" class="fa-solid fa-file-lines"></i>
+            <i id="nav-icons" className="fa-solid fa-car-on"></i>
             <p id="nav-text">Ride</p>
           </NavLink>
         </li>

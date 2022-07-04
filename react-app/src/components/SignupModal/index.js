@@ -8,7 +8,7 @@ function SignupModal() {
   return (
     <>
       <button className="signup-button" onClick={() => setShowModal(true)}>
-        <i id="nav-icons" class="fa-solid fa-user-plus"></i>
+        <i id="nav-icons" className="fa-solid fa-user-plus"></i>
         <p id="nav-text">Sign Up</p>
       </button>
       {showModal && (
