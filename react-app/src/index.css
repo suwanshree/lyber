@@ -1,0 +1,471 @@
+/* Site wide styling */
+
+/* Undo all margins */
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  /* background-attachment: fixed; */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Scrollbar  */
+
+/* ::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #03e9f4;
+  background: rgb(0, 8, 12);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #77e2e8;
+  border-radius: 8px;
+  margin: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #55a0a4;
+} */
+
+/* Splash Page */
+
+/* Navigation Bar */
+
+.nav-container {
+  width: 100%;
+  top: 0;
+  position: absolute;
+  display: flex;
+  overflow: hidden;
+  justify-content: space-between;
+  z-index: 1;
+  -webkit-box-shadow: 0 2px 4px -6px #222;
+  -moz-box-shadow: 0 2px 4px -6px #222;
+  box-shadow: 0 2px 4px -4px #222;
+  font-size: 1.5em;
+  background-color: transparent;
+}
+
+.static-nav,
+.logged-in-nav,
+.logged-out-nav {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+  list-style-type: none;
+  overflow: hidden;
+}
+
+.logged-in-nav li,
+.logged-out-nav li {
+  padding: 5px;
+  width: 100%;
+  margin-left: 10px;
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+  font-size: 1em;
+}
+
+.home-button {
+  display: flex;
+  margin-left: 10px;
+  font-family: "Staatliches", cursive;
+  flex-direction: row;
+  align-items: center;
+  font-size: 1.25em;
+  letter-spacing: 4px;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+
+#logos {
+  width: 35px;
+  height: 32px;
+  opacity: 0.8;
+  margin-right: 5px;
+}
+
+.logos-div {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  text-decoration: none;
+  font-family: "Roboto Slab", serif;
+  color: rgb(0, 0, 0);
+  margin-bottom: 10px;
+}
+
+#nav-buttons {
+  text-align: center;
+}
+
+.listings-button {
+  border-radius: 5px;
+  border: 1px solid #000000;
+  box-shadow: 0 0 2px #000000, 0 0 4px #000000;
+}
+
+.listings-button:hover {
+  backdrop-filter: blur(1px);
+  box-shadow: 0 0 3px #000000, 0 0 6px #000000;
+}
+
+a,
+a:link {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+
+a:visited,
+a:link:visited {
+  color: rgb(0, 0, 0);
+}
+
+/* Remove default for buttons and 'a' links */
+
+button,
+a {
+  display: inline-block;
+  border: none;
+  margin: 0;
+  text-decoration: none;
+  background-color: transparent;
+  font-family: "Roboto Slab", serif;
+  color: rgb(0, 0, 0);
+  font-size: 1.2em;
+  line-height: 1;
+  cursor: pointer;
+  text-align: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+button:hover,
+a:hover {
+  color: #000000;
+  text-shadow: 0 0 1px #000000;
+}
+
+/* Auth Modals styles */
+
+.auth-form-container {
+  height: auto;
+  width: auto;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.08);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background: transparent;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(56, 56, 56, 0.6);
+  padding: 50px 35px;
+}
+
+.auth-form-left {
+  height: auto;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.auth-form-right {
+  display: none;
+}
+
+.auth-form-container *,
+.auth-form-left *,
+.auth-form-right * {
+  font-family: "Poppins", sans-serif;
+  color: rgb(0, 0, 0);
+  letter-spacing: 0.5px;
+  outline: none;
+  border: none;
+}
+
+.auth-form-container h3,
+.auth-form-left h3,
+.auth-form-right h3 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.auth-label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.auth-input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 3px;
+  padding: 0 10px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.errors-div li {
+  list-style-type: none;
+  color: red;
+  font-family: "Roboto Slab", serif;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid rgb(0, 0, 0);
+  -webkit-text-fill-color: rgb(0, 0, 0);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus,
+textarea,
+textarea:hover,
+textarea:focus,
+select,
+select:hover,
+select:focus {
+  border: 1px solid rgb(0, 0, 0);
+  -webkit-text-fill-color: rgb(0, 0, 0);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.auth-input:hover {
+  box-shadow: 0 0 5px #000000, 0 0 25px #000000;
+  -webkit-text-fill-color: rgb(0, 0, 0);
+}
+
+::placeholder {
+  color: rgb(0, 0, 0);
+}
+
+#auth-submit {
+  position: center;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #000000;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 30px;
+  letter-spacing: 4px;
+  border-radius: 5px;
+}
+
+#auth-submit:hover {
+  background: #000000;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #000000, 0 0 25px #000000, 0 0 50px;
+}
+
+#form-demo {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+#home-button {
+  display: none;
+}
+
+#nav-text {
+  display: none;
+}
+
+/* Tablets */
+
+@media only screen and (min-width: 600px) {
+  button,
+  a {
+    font-size: 1em;
+  }
+
+  #home-button {
+    display: flex;
+  }
+
+  #nav-text {
+    display: flex;
+  }
+
+  #nav-icons {
+    display: none;
+  }
+
+  .logged-in-nav li,
+  .logged-out-nav li {
+    width: 120px;
+  }
+
+  .auth-form-container {
+    height: auto;
+    width: auto;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.08);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(56, 56, 56, 0.6);
+    padding: 50px 35px;
+  }
+
+  .auth-form-left {
+    height: auto;
+    width: 400px;
+    border-radius: 10px;
+  }
+
+  .auth-form-right {
+    display: none;
+  }
+
+  .auth-form-container *,
+  .auth-form-left *,
+  .auth-form-right * {
+    font-family: "Poppins", sans-serif;
+    color: rgb(0, 0, 0);
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+
+  .auth-form-container h3,
+  .auth-form-left h3,
+  .auth-form-right h3 {
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 30px;
+  }
+
+  .auth-label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .auth-input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .errors-div li {
+    list-style-type: none;
+    color: red;
+    font-family: "Roboto Slab", serif;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border: 1px solid rgb(0, 0, 0);
+    -webkit-text-fill-color: rgb(0, 0, 0);
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  input:focus,
+  textarea,
+  textarea:hover,
+  textarea:focus,
+  select,
+  select:hover,
+  select:focus {
+    border: 1px solid rgb(0, 0, 0);
+    -webkit-text-fill-color: rgb(0, 0, 0);
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .auth-input:hover {
+    box-shadow: 0 0 5px #000000, 0 0 25px #000000;
+    -webkit-text-fill-color: rgb(0, 0, 0);
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  button,
+  a {
+    font-size: 1em;
+  }
+
+  #home-button {
+    display: flex;
+  }
+
+  #nav-text {
+    display: flex;
+  }
+
+  #nav-icons {
+    display: none;
+  }
+
+  .logged-in-nav li,
+  .logged-out-nav li {
+    width: 120px;
+  }
+
+  .auth-form-right {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 90px;
+    width: auto;
+    border-radius: 10px;
+  }
+}
