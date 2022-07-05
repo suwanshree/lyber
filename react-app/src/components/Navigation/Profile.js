@@ -24,7 +24,7 @@ function Profile() {
   return (
     <>
       <button className="User-Profile" onClick={() => setShowModal(true)}>
-        <i id="nav-icons" class="fa-solid fa-user"></i>
+        <i id="nav-icons" className="fa-solid fa-user"></i>
         <p id="nav-text">Profile</p>
       </button>
       {showModal && (

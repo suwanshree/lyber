@@ -30,7 +30,7 @@ function DemoButton() {
           }}
           type="demo"
         >
-          <i id="nav-icons" class="fa-solid fa-eye"></i>
+          <i id="nav-icons" className="fa-solid fa-eye"></i>
           <p id="nav-text">Demo</p>
         </button>
       </div>

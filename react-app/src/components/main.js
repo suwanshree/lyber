@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MapContainer from "./Map";
 import "./main.css";
 
 function MainPage() {
@@ -16,7 +17,7 @@ function MainPage() {
   }, []);
   return (
     <div className="page-container">
-      <h1>This is the Main Page</h1>
+      <MapContainer />
     </div>
   );
 }
