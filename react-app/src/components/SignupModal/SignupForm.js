@@ -86,9 +86,6 @@ const SignupForm = () => {
             Sign Up
           </button>
         </form>
-        <div id="form-demo">
-          <DemoButton />
-        </div>
       </div>
       <div className="auth-form-right">
         <div className="line right">
