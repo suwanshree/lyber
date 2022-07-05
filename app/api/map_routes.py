@@ -30,4 +30,4 @@ def get_places(lat, lng, zoom):
 
     # places = Listing.query.filter(text(clause)).params(lati=lat, long=lng, d=distance).all()
 
-    return {'places': [place.to_dict() for place in places]}
+    # return {'places': [place.to_dict() for place in places]}
