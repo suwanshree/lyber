@@ -14,7 +14,9 @@ export function ProfileModalProvider({ children }) {
 
   return (
     <>
-      <ProfileModalContext.Provider value={value}>{children}</ProfileModalContext.Provider>
+      <ProfileModalContext.Provider value={value}>
+        {children}
+      </ProfileModalContext.Provider>
       <div ref={modalRef} />
     </>
   );
