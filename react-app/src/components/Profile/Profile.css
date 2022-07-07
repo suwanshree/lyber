@@ -1,0 +1,6 @@
+@media only screen and (max-width: 400px) {
+  #ProfileModal {
+    top: 180px;
+    right: 95px;
+  }
+}
