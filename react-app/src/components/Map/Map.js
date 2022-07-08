@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useCallback } from "react";
+import { useSelector } from "react-redux";
 import "./Map.css";
 
 import {
@@ -37,10 +38,19 @@ const containerStyle = {
   height: "88vh",
 };
 
+let start;
+let startLat;
+let startLng;
+let end;
+let endLat;
+let endLng;
+let price = 0;
+
 const Map = () => {
-  const [showMarkers, setShowMarkers] = useState(false);
-  const [cityMarkers, setCityMarkers] = useState([]);
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  // const [showMarkers, setShowMarkers] = useState(false);
+  // const [cityMarkers, setCityMarkers] = useState([]);
+  // const [selectedMarker, setSelectedMarker] = useState(null);
+  const sessionUser = useSelector((state) => state.session.user);
   const mapRef = useRef();
   const center = useMemo(
     () => ({
@@ -55,39 +65,51 @@ const Map = () => {
     const lng = mapRef.current?.getCenter().lng();
     const zoom = mapRef.current?.getZoom();
 
-    if (lat && lng) {
-      const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
-      if (res.ok) {
-        const data = await res.json();
-        if (data.places.length > 0) {
-          setCityMarkers(data.places);
-        }
-      }
-    }
+    // if (lat && lng) {
+    //   const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
+    //   if (res.ok) {
+    //     const data = await res.json();
+    //     if (data.places.length > 0) {
+    //       setCityMarkers(data.places);
+    //     }
+    //   }
+    // }
+  };
+
+  const callRide = () => {
+    console.log(sessionUser.id);
+    console.log(start);
+    console.log(startLat);
+    console.log(startLng);
+    console.log(end);
+    console.log(endLat);
+    console.log(endLng);
+    console.log(price);
   };
 
   return (
     <div className="maps-container">
       <div className="pick-up">
         <h3>Pick Up:</h3>
-        <PlacesAutocomplete
-          setCityMarkers={setCityMarkers}
+        <PlacesAutocompleteFrom
+          // setCityMarkers={setCityMarkers}
           setSelected={(position) => {
-            setShowMarkers(true);
+            // setShowMarkers(true);
             mapRef.current?.panTo(position);
           }}
         />
       </div>
       <div className="drop-off">
         <h3>Drop Off:</h3>
-        <PlacesAutocomplete
-          setCityMarkers={setCityMarkers}
+        <PlacesAutocompleteTo
+          // setCityMarkers={setCityMarkers}
           setSelected={(position) => {
-            setShowMarkers(true);
+            // setShowMarkers(true);
             mapRef.current?.panTo(position);
           }}
         />
       </div>
+      <button onClick={callRide}>Find Ride</button>
       <div className="map">
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -96,7 +118,7 @@ const Map = () => {
           onLoad={onLoad}
           onCenterChanged={trackNewCenter}
         >
-          {showMarkers && (
+          {/* {showMarkers && (
             <MarkerClusterer>
               {(clusterer) =>
                 cityMarkers?.map((mark, i) => (
@@ -123,14 +145,14 @@ const Map = () => {
                 ))
               }
             </MarkerClusterer>
-          )}
+          )} */}
         </GoogleMap>
       </div>
     </div>
   );
 };
 
-const PlacesAutocomplete = ({ setSelected, setCityMarkers }) => {
+const PlacesAutocompleteFrom = ({ setSelected, setCityMarkers }) => {
   const {
     ready,
     value,
@@ -141,16 +163,69 @@ const PlacesAutocomplete = ({ setSelected, setCityMarkers }) => {
 
   const handleSelect = async (address) => {
     const results = await getGeocode({ address });
+    start = address;
     const { lat, lng } = await getLatLng(results[0]);
+    startLat = lat;
+    startLng = lng;
     setSelected({ lat, lng });
-    const zoom = 10;
+    // const zoom = 10;
 
-    const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
-    if (res.ok) {
-      const data = await res.json();
+    // const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
+    // if (res.ok) {
+    //   const data = await res.json();
 
-      setCityMarkers(data.places);
-    }
+    //   setCityMarkers(data.places);
+    // }
+    setValue(address, false);
+    clearSuggestions();
+  };
+
+  return (
+    <div className="search-input">
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          disabled={!ready}
+          placeholder="Search an address"
+        />
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === "OK" &&
+              data?.map(({ place_id, description }) => (
+                <ComboboxOption key={place_id} value={description} />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
+  );
+};
+
+const PlacesAutocompleteTo = ({ setSelected, setCityMarkers }) => {
+  const {
+    ready,
+    value,
+    setValue,
+    suggestions: { status, data },
+    clearSuggestions,
+  } = usePlacesAutocomplete();
+
+  const handleSelect = async (address) => {
+    const results = await getGeocode({ address });
+    end = address;
+    const { lat, lng } = await getLatLng(results[0]);
+    endLat = lat;
+    endLng = lng;
+    setSelected({ lat, lng });
+    // const zoom = 10;
+
+    // const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
+    // if (res.ok) {
+    //   const data = await res.json();
+
+    //   setCityMarkers(data.places);
+    // }
     setValue(address, false);
     clearSuggestions();
   };
