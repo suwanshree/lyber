@@ -25,27 +25,40 @@ const loadTrips = (trips) => {
 // thunks return a function that returns an action
 
 export const newTrip = (newTrip) => async (dispatch) => {
-  const { userId, start, startLat, startLng, end, endLat, endLng, price } =
+  const { user_id, start, start_lat, start_lng, end, end_lat, end_lng, price } =
     newTrip;
   const response = await fetch("/api/trips/", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      userId,
+      user_id,
       start,
-      startLat,
-      startLng,
+      start_lat,
+      start_lng,
       end,
-      endLat,
-      endLng,
+      end_lat,
+      end_lng,
       price,
     }),
   });
+  console.log(
+    user_id,
+    start,
+    start_lat,
+    start_lng,
+    end,
+    end_lat,
+    end_lng,
+    price
+  );
+  console.log("FETCH SENT");
 
   if (response.ok) {
     const data = await response.json();
+    console.log("RESPONSE OKAY");
     dispatch(addTrip(data));
   } else if (response.status < 500) {
+    console.log("RESPONSE NOT OKAY");
     const data = await response.json();
     if (data.errors) return data.errors;
   } else return ["An error occurred. Please try again."];

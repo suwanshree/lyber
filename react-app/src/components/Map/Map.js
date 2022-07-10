@@ -1,6 +1,14 @@
-import React, { useState, useMemo, useRef, useCallback } from "react";
-import { useSelector } from "react-redux";
+import React, {
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Map.css";
+import * as tripActions from "../../store/trip";
+import { useHistory } from "react-router-dom";
 
 import {
   GoogleMap,
@@ -38,19 +46,29 @@ const containerStyle = {
   height: "88vh",
 };
 
+const MapOptions = {
+  mapTypeControl: false,
+  streetViewControl: false,
+  fullscreenControl: false,
+};
+
 let start;
-let startLat;
-let startLng;
+let start_lat;
+let start_lng;
 let end;
-let endLat;
-let endLng;
+let end_lat;
+let end_lng;
 let price = 0;
 
 const Map = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   // const [showMarkers, setShowMarkers] = useState(false);
   // const [cityMarkers, setCityMarkers] = useState([]);
   // const [selectedMarker, setSelectedMarker] = useState(null);
   const sessionUser = useSelector((state) => state.session.user);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [errors, setErrors] = useState([]);
   const mapRef = useRef();
   const center = useMemo(
     () => ({
@@ -76,42 +94,81 @@ const Map = () => {
     // }
   };
 
-  const callRide = () => {
-    console.log(sessionUser.id);
-    console.log(start);
-    console.log(startLat);
-    console.log(startLng);
-    console.log(end);
-    console.log(endLat);
-    console.log(endLng);
-    console.log(price);
+  const callRide = (e) => {
+    if (e.cancelable) e.preventDefault();
+    setHasSubmitted(true);
+    let error = [];
+    if (!start) {
+      error.push("Select a Pick Up Location!");
+      setErrors(error);
+      return;
+    }
+    if (!end) {
+      error.push("Select a Drop Off Location!");
+      setErrors(error);
+      return;
+    }
+    const user_id = sessionUser.id;
+    const newTripData = {
+      user_id,
+      start,
+      start_lat,
+      start_lng,
+      end,
+      end_lat,
+      end_lng,
+      price,
+    };
+
+    dispatch(tripActions.newTrip(newTripData))
+      .then(() => {
+        setErrors([]);
+        setHasSubmitted(false);
+        history.push("/main");
+        // window.location.reload();
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors);
+      });
   };
 
   return (
     <div className="maps-container">
-      <div className="pick-up">
-        <h3>Pick Up:</h3>
-        <PlacesAutocompleteFrom
-          // setCityMarkers={setCityMarkers}
-          setSelected={(position) => {
-            // setShowMarkers(true);
-            mapRef.current?.panTo(position);
-          }}
-        />
+      <div className="map-top">
+        <div className="map-inputs">
+          <div className="pick-up">
+            <h3>Pick Up:</h3>
+            <PlacesAutocompleteFrom
+              // setCityMarkers={setCityMarkers}
+              setSelected={(position) => {
+                // setShowMarkers(true);
+                mapRef.current?.panTo(position);
+              }}
+            />
+          </div>
+          <div className="drop-off">
+            <h3>Drop Off:</h3>
+            <PlacesAutocompleteTo
+              // setCityMarkers={setCityMarkers}
+              setSelected={(position) => {
+                // setShowMarkers(true);
+                mapRef.current?.panTo(position);
+              }}
+            />
+          </div>
+        </div>
+        <button id="ride-button" onClick={(e) => callRide(e)}>
+          Find Ride
+        </button>
       </div>
-      <div className="drop-off">
-        <h3>Drop Off:</h3>
-        <PlacesAutocompleteTo
-          // setCityMarkers={setCityMarkers}
-          setSelected={(position) => {
-            // setShowMarkers(true);
-            mapRef.current?.panTo(position);
-          }}
-        />
-      </div>
-      <button onClick={callRide}>Find Ride</button>
+      <ul className="find-ride-errors">
+        {hasSubmitted && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+      </ul>
       <div className="map">
         <GoogleMap
+          options={MapOptions}
+          clickableIcons={false}
           mapContainerStyle={containerStyle}
           center={center}
           zoom={10}
@@ -165,8 +222,8 @@ const PlacesAutocompleteFrom = ({ setSelected, setCityMarkers }) => {
     const results = await getGeocode({ address });
     start = address;
     const { lat, lng } = await getLatLng(results[0]);
-    startLat = lat;
-    startLng = lng;
+    start_lat = lat;
+    start_lng = lng;
     setSelected({ lat, lng });
     // const zoom = 10;
 
@@ -215,8 +272,8 @@ const PlacesAutocompleteTo = ({ setSelected, setCityMarkers }) => {
     const results = await getGeocode({ address });
     end = address;
     const { lat, lng } = await getLatLng(results[0]);
-    endLat = lat;
-    endLng = lng;
+    end_lat = lat;
+    end_lng = lng;
     setSelected({ lat, lng });
     // const zoom = 10;
 
