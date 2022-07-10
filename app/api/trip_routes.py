@@ -21,15 +21,16 @@ def validation_errors_to_error_messages(validation_errors):
 def trips():
     form = NewTrip()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print("FORM DATA-------------------------->", form.data)
     if form.validate_on_submit():
         new_trip = Trip(
-            user_id=form.data["userId"],
+            user_id=form.data["user_id"],
             start=form.data["start"],
-            start_lat=form.data["startLat"],
-            start_lng=form.data["startLng"],
+            start_lat=form.data["start_lat"],
+            start_lng=form.data["start_lng"],
             end=form.data["end"],
-            end_lat=form.data["endLat"],
-            end_lng=form.data["endLng"],
+            end_lat=form.data["end_lat"],
+            end_lng=form.data["end_lng"],
             price=form.data["price"],
 
         )
