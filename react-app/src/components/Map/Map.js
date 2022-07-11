@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Map.css";
 import * as tripActions from "../../store/trip";
 import { useHistory } from "react-router-dom";
-
+import pin from "./pin.png";
 import {
   GoogleMap,
   useLoadScript,
@@ -63,8 +63,9 @@ let price = 0;
 const Map = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [showMarkers, setShowMarkers] = useState(false);
-  // const [cityMarkers, setCityMarkers] = useState([]);
+  const [showMarkers, setShowMarkers] = useState(false);
+  const [fromMarker, setFromMarker] = useState([]);
+  const [toMarker, setToMarker] = useState([]);
   // const [selectedMarker, setSelectedMarker] = useState(null);
   const sessionUser = useSelector((state) => state.session.user);
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -82,16 +83,6 @@ const Map = () => {
     const lat = mapRef.current?.getCenter().lat();
     const lng = mapRef.current?.getCenter().lng();
     const zoom = mapRef.current?.getZoom();
-
-    // if (lat && lng) {
-    //   const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
-    //   if (res.ok) {
-    //     const data = await res.json();
-    //     if (data.places.length > 0) {
-    //       setCityMarkers(data.places);
-    //     }
-    //   }
-    // }
   };
 
   const callRide = (e) => {
@@ -138,21 +129,21 @@ const Map = () => {
       <div className="map-top">
         <div className="map-inputs">
           <div className="pick-up">
-            <h3>Pick Up:</h3>
+            <h3>Pick Up (A):</h3>
             <PlacesAutocompleteFrom
-              // setCityMarkers={setCityMarkers}
+              setFromMarker={setFromMarker}
               setSelected={(position) => {
-                // setShowMarkers(true);
+                setShowMarkers(true);
                 mapRef.current?.panTo(position);
               }}
             />
           </div>
           <div className="drop-off">
-            <h3>Drop Off:</h3>
+            <h3>Drop Off (B):</h3>
             <PlacesAutocompleteTo
-              // setCityMarkers={setCityMarkers}
+              setToMarker={setToMarker}
               setSelected={(position) => {
-                // setShowMarkers(true);
+                setShowMarkers(true);
                 mapRef.current?.panTo(position);
               }}
             />
@@ -175,41 +166,45 @@ const Map = () => {
           onLoad={onLoad}
           onCenterChanged={trackNewCenter}
         >
-          {/* {showMarkers && (
-            <MarkerClusterer>
-              {(clusterer) =>
-                cityMarkers?.map((mark, i) => (
-                  <Marker
-                    label={{
-                      fontWeight: "bold",
-                      fontSize: "7px",
-                      text: `${mark.price.toFixed(2)}`,
-                    }}
-                    key={mark.id}
-                    position={{
-                      lat: parseFloat(mark.lat),
-                      lng: parseFloat(mark.lng),
-                    }}
-                    clusterer={clusterer}
-                    onClick={() => setSelectedMarker(mark)}
-                  >
-                    {selectedMarker && mark.id === selectedMarker.id ? (
-                      <InfoWindow>
-                        <div>{selectedMarker.address}</div>
-                      </InfoWindow>
-                    ) : null}
-                  </Marker>
-                ))
-              }
-            </MarkerClusterer>
-          )} */}
+          {showMarkers &&
+            fromMarker?.map((mark, i) => (
+              <Marker
+                label={{
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  text: `A`,
+                }}
+                key={mark.id}
+                position={{
+                  lat: parseFloat(mark.lat),
+                  lng: parseFloat(mark.lng),
+                }}
+                icon={pin}
+              ></Marker>
+            ))}
+          {showMarkers &&
+            toMarker?.map((mark, i) => (
+              <Marker
+                label={{
+                  fontWeight: "bold",
+                  fontSize: "16px",
+                  text: `B`,
+                }}
+                key={mark.id}
+                position={{
+                  lat: parseFloat(mark.lat),
+                  lng: parseFloat(mark.lng),
+                }}
+                icon={pin}
+              ></Marker>
+            ))}
         </GoogleMap>
       </div>
     </div>
   );
 };
 
-const PlacesAutocompleteFrom = ({ setSelected, setCityMarkers }) => {
+const PlacesAutocompleteFrom = ({ setSelected, setFromMarker }) => {
   const {
     ready,
     value,
@@ -225,14 +220,7 @@ const PlacesAutocompleteFrom = ({ setSelected, setCityMarkers }) => {
     start_lat = lat;
     start_lng = lng;
     setSelected({ lat, lng });
-    // const zoom = 10;
-
-    // const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
-    // if (res.ok) {
-    //   const data = await res.json();
-
-    //   setCityMarkers(data.places);
-    // }
+    setFromMarker([{ lat, lng }]);
     setValue(address, false);
     clearSuggestions();
   };
@@ -259,7 +247,7 @@ const PlacesAutocompleteFrom = ({ setSelected, setCityMarkers }) => {
   );
 };
 
-const PlacesAutocompleteTo = ({ setSelected, setCityMarkers }) => {
+const PlacesAutocompleteTo = ({ setSelected, setToMarker }) => {
   const {
     ready,
     value,
@@ -275,14 +263,7 @@ const PlacesAutocompleteTo = ({ setSelected, setCityMarkers }) => {
     end_lat = lat;
     end_lng = lng;
     setSelected({ lat, lng });
-    // const zoom = 10;
-
-    // const res = await fetch(`/api/map/${lat}/${lng}/${zoom}`);
-    // if (res.ok) {
-    //   const data = await res.json();
-
-    //   setCityMarkers(data.places);
-    // }
+    setToMarker([{ lat, lng }]);
     setValue(address, false);
     clearSuggestions();
   };
