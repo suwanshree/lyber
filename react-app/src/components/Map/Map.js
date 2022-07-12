@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Map.css";
 import * as tripActions from "../../store/trip";
 import { useHistory } from "react-router-dom";
-import pin from "./pin.png";
+import pin from "../../images/pin.png";
 import {
   GoogleMap,
   useLoadScript,
