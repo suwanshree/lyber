@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import splash from "../../images/splash.gif";
 
 function SplashPage() {
   const history = useHistory();
@@ -23,7 +24,8 @@ function SplashPage() {
   }, []);
   return (
     <div className="page-container">
-      <h1>This is the Splash Page</h1>
+      <h1>Welcome to Lyber</h1>
+      <img src={splash} className="splash-gif" alt="Splash Gif"></img>
     </div>
   );
 }
