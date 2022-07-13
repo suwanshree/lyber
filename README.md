@@ -97,3 +97,6 @@ This repo comes configured with Github Actions. When you push to your main branc
 | `heroku login -i`              | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser                                             |
 | `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token                                                                                      |
 | `heroku run -a star-yelp`      | Run a command from within the deployed container on Heroku                                                                                   |
+
+Attribution for Splash page gif:
+Organizowanie studniówek Katowice, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
