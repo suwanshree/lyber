@@ -10,10 +10,13 @@ import "./Map.css";
 import * as tripActions from "../../store/trip";
 import { useHistory } from "react-router-dom";
 import pin from "../../images/pin.png";
+import loadingGif from "../../images/loading.gif";
 import {
   GoogleMap,
   useLoadScript,
   Marker,
+  DirectionsService,
+  DirectionsRenderer,
   MarkerClusterer,
   InfoWindow,
 } from "@react-google-maps/api";
@@ -69,6 +72,8 @@ const Map = () => {
   // const [selectedMarker, setSelectedMarker] = useState(null);
   const sessionUser = useSelector((state) => state.session.user);
   const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [directions, setDirections] = useState({});
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const mapRef = useRef();
   const center = useMemo(
@@ -111,12 +116,32 @@ const Map = () => {
       price,
     };
 
+    const directionsService = new DirectionsService();
+
+    const origin = { lat: start_lat, lng: start_lng };
+    const destination = { lat: end_lat, lng: end_lng };
+
+    // directionsService.route(
+    //   {
+    //     origin: origin,
+    //     destination: destination,
+    //   },
+    //   (result, status) => {
+    //     if (status === DirectionsService.DirectionsStatus.OK) {
+    //       setDirections({
+    //         directions: result,
+    //       });
+    //     } else {
+    //       console.error(`error fetching directions ${result}`);
+    //     }
+    //   }
+    // );
+
     dispatch(tripActions.newTrip(newTripData))
       .then(() => {
         setErrors([]);
         setHasSubmitted(false);
-        history.push("/main");
-        // window.location.reload();
+        setLoading(true);
       })
       .catch(async (res) => {
         const data = await res.json();
@@ -198,6 +223,15 @@ const Map = () => {
                 icon={pin}
               ></Marker>
             ))}
+          {loading && (
+            <div className="loading">
+              <img
+                src={loadingGif}
+                className="loading-gif"
+                alt="Loading Gif"
+              ></img>
+            </div>
+          )}
         </GoogleMap>
       </div>
     </div>

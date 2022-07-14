@@ -43,6 +43,11 @@
   margin-left: 10px;
 }
 
+.loading {
+  position: absolute;
+  z-index: 10;
+}
+
 @media only screen and (max-width: 400px) {
   #ProfileModal {
     top: 180px;
