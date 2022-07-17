@@ -69,7 +69,6 @@ const Map = () => {
   const [showMarkers, setShowMarkers] = useState(false);
   const [fromMarker, setFromMarker] = useState([]);
   const [toMarker, setToMarker] = useState([]);
-  // const [selectedMarker, setSelectedMarker] = useState(null);
   const sessionUser = useSelector((state) => state.session.user);
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [directions, setDirections] = useState({});
@@ -117,7 +116,7 @@ const Map = () => {
     };
 
     const directionsService = new DirectionsService();
-
+    console.log(directionsService);
     const origin = { lat: start_lat, lng: start_lng };
     const destination = { lat: end_lat, lng: end_lng };
 
