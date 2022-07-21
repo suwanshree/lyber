@@ -15,12 +15,16 @@
   width: 100%;
 }
 
+.pick-up h3 {
+  margin-left: 10px;
+}
+
 .pick-up input {
-  margin-left: 14px;
+  margin-left: 7px;
 }
 
 .drop-off input {
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
 .map-top {
@@ -40,11 +44,46 @@
 }
 
 #ride-button {
-  margin-left: 10px;
+  margin-top: 10px;
+  margin-left: 12px;
+  background-color: #c2fbd7;
+  border-radius: 100px;
+  box-shadow: rgba(44, 187, 99, 0.2) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.15) 0 1px 2px, rgba(44, 187, 99, 0.15) 0 2px 4px,
+    rgba(44, 187, 99, 0.15) 0 4px 8px, rgba(44, 187, 99, 0.15) 0 8px 16px,
+    rgba(44, 187, 99, 0.15) 0 16px 32px;
+  color: green;
+  cursor: pointer;
+  display: inline-block;
+  font-family: CerebriSans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+  padding: 7px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 250ms;
+  border: 0;
+  font-size: 16px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  height: 30px;
+}
+
+#ride-button:hover {
+  box-shadow: rgba(44, 187, 99, 0.35) 0 -25px 18px -14px inset,
+    rgba(44, 187, 99, 0.25) 0 1px 2px, rgba(44, 187, 99, 0.25) 0 2px 4px,
+    rgba(44, 187, 99, 0.25) 0 4px 8px, rgba(44, 187, 99, 0.25) 0 8px 16px,
+    rgba(44, 187, 99, 0.25) 0 16px 32px;
+  transform: scale(1.05) rotate(-1deg);
 }
 
 .loading {
   position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 220px;
+  left: 0;
+  right: 0;
+  text-align: center;
   z-index: 10;
 }
 

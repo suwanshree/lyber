@@ -154,7 +154,7 @@ const Map = () => {
       <div className="map-top">
         <div className="map-inputs">
           <div className="pick-up">
-            <h3>Pick Up:</h3>
+            <h3>Pick Up</h3>
             <PlacesAutocompleteFrom
               setFromMarker={setFromMarker}
               setSelected={(position) => {
@@ -164,7 +164,7 @@ const Map = () => {
             />
           </div>
           <div className="drop-off">
-            <h3>Drop Off:</h3>
+            <h3>Drop Off</h3>
             <PlacesAutocompleteTo
               setToMarker={setToMarker}
               setSelected={(position) => {
