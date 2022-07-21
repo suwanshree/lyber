@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Map.css";
 import * as tripActions from "../../store/trip";
 import { useHistory } from "react-router-dom";
-import pin from "../../images/pin.png";
+import up from "../../images/upward-arrow.png";
+import down from "../../images/down-arrow.png";
 import loadingGif from "../../images/loading.gif";
 import {
   GoogleMap,
@@ -153,7 +154,7 @@ const Map = () => {
       <div className="map-top">
         <div className="map-inputs">
           <div className="pick-up">
-            <h3>Pick Up (A):</h3>
+            <h3>Pick Up:</h3>
             <PlacesAutocompleteFrom
               setFromMarker={setFromMarker}
               setSelected={(position) => {
@@ -163,7 +164,7 @@ const Map = () => {
             />
           </div>
           <div className="drop-off">
-            <h3>Drop Off (B):</h3>
+            <h3>Drop Off:</h3>
             <PlacesAutocompleteTo
               setToMarker={setToMarker}
               setSelected={(position) => {
@@ -193,33 +194,33 @@ const Map = () => {
           {showMarkers &&
             fromMarker?.map((mark, i) => (
               <Marker
-                label={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  text: `A`,
-                }}
+                // label={{
+                //   fontWeight: "bold",
+                //   fontSize: "16px",
+                //   text: `A`,
+                // }}
                 key={mark.id}
                 position={{
                   lat: parseFloat(mark.lat),
                   lng: parseFloat(mark.lng),
                 }}
-                icon={pin}
+                icon={up}
               ></Marker>
             ))}
           {showMarkers &&
             toMarker?.map((mark, i) => (
               <Marker
-                label={{
-                  fontWeight: "bold",
-                  fontSize: "16px",
-                  text: `B`,
-                }}
+                // label={{
+                //   fontWeight: "bold",
+                //   fontSize: "16px",
+                //   text: `B`,
+                // }}
                 key={mark.id}
                 position={{
                   lat: parseFloat(mark.lat),
                   lng: parseFloat(mark.lng),
                 }}
-                icon={pin}
+                icon={down}
               ></Marker>
             ))}
           {loading && (

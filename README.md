@@ -101,5 +101,8 @@ This repo comes configured with Github Actions. When you push to your main branc
 Attribution for Splash page gif:
 Organizowanie studniówek Katowice, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
 
-Attribution for up and down arrows png:
-<a href="https://www.flaticon.com/free-icons/arrows" title="arrows icons">Arrows icons created by Creative Stall Premium - Flaticon</a>
+Attribution for up arrow png:
+<a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by kliwir art - Flaticon</a>
+
+Attribution for down arrow png:
+<a href="https://www.flaticon.com/free-icons/arrows" title="arrows icons">Arrows icons created by lakonicon - Flaticon</a>
