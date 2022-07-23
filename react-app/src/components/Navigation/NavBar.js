@@ -14,13 +14,13 @@ const NavBar = () => {
   if (user) {
     sessionLinks = (
       <ul className="logged-in-nav">
-        <li className="listings-button" id="nav-buttons">
+        <li className="listings-button" id="ride-page-button">
           <NavLink to="/main" exact={true} className="listings">
             <i id="nav-icons" className="fa-solid fa-car-on"></i>
             <p id="nav-text">Ride</p>
           </NavLink>
         </li>
-        <li className="listings-button" id="nav-buttons">
+        <li className="listings-button" id="profile-button">
           <Profile />
         </li>
       </ul>
@@ -28,13 +28,13 @@ const NavBar = () => {
   } else {
     sessionLinks = (
       <ul className="logged-out-nav">
-        <li className="listings-button" id="nav-buttons">
+        <li className="listings-button" id="login-button">
           <LoginModal />
         </li>
-        <li className="listings-button" id="nav-buttons">
+        <li className="listings-button" id="signup-button">
           <SignupModal />
         </li>
-        <li className="listings-button" id="nav-buttons">
+        <li className="listings-button" id="demo-button">
           <DemoButton />
         </li>
       </ul>

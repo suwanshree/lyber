@@ -19,7 +19,7 @@ function Profile() {
 
   return (
     <div className="page-container">
-      <h1 id="all-listings">{sessionUser.username}'s Profile Page</h1>
+      <h1 id="all-listings">Your ride history</h1>
       <BackToTop />
     </div>
   );

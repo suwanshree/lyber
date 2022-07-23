@@ -118,10 +118,10 @@
 }
 
 #profile-listing:hover {
-  background: #227acc;
+  background: #c2e9fb;
   color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 5px #227acc, 0 0 25px #227acc;
+  box-shadow: 0 0 5px #c2e9fb, 0 0 25px #c2e9fb;
 }
 
 #profile-logout {
@@ -142,8 +142,8 @@
 }
 
 #profile-logout:hover {
-  background: #f42303;
+  background: #ff5b41;
   color: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 5px #f42303, 0 0 25px #f42303;
+  box-shadow: 0 0 5px #ff5b41, 0 0 25px #ff5b41;
 }
