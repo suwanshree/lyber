@@ -1,34 +1,105 @@
-_IMPORTANT!_
-psycopg2-binary MUST remain a dev dependency because you can't install it on alpine-linux.
-There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
+<div id="top"></div>
 
----
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <!-- <a href="https://github.com/suwanshree/lyber"> -->
+    <img src="react-app/src/images/logo.png" alt="Logo" width="86" height="100">
+  </a>
 
-### Dev Containers (OPTIONAL for M1 Users)
+<h2 align="center">LYBER</h2>
 
-The following instructions detail an _optional_ development setup for M1 Mac users having issues with the `psycopg` package.
+  <p align="center">
+    A portfolio clone of ridesharing apps (Lyft / Uber)
+    <br />
+    <br />
+    <a href="https://lyber-rideshare.herokuapp.com/"><strong>Explore the site »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/suwanshree/lyber/wiki"><strong>Explore the docs »</strong></a>
+    <br />
+  </p>
+</div>
 
-1. Install dependencies:
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#key-features">Key Features</a></li>
+    <li><a href="#frontend-overview">Frontend Overview</a></li>
+    <li><a href="#backend-overview">Backend Overview</a></li>
+    <li><a href="#star-yelp-setup">Star Yelp Setup</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#future-implementations">Future Implementations</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#attribution">Attribution</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+
+## About The Project
+
+Lyber, a Lyft / Uber clone, is a full stack ridesharing app for users to input their exact pickup and drop off locations, then find a ride to their destination by getting matched with a nearby driver. Users can view the total cost of the ride, and also go into their profile to see previous rides they have taken through the application. Work on current features is in progress and more features are planned for the future.
+
+<img src="react-app/src/images/lyber_wglcrn.png" width=auto height=auto>
+
+## Key Features
+
+- Create new users and have user login with authorization
+- Once logged in, search for and add valid pick-up and drop-off addresses
+- Request a ride with the addresses filled in using the Find Ride button
+- Get a "ride simulation" and view user profile for previous rides
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- BUILT WITH -->
+
+## Frontend Overview
+
+Star Yelp is built on a React frontend and uses an npm package for displaying ratings as stars.
+
+Technologies/Frameworks Used
+
+- [Javascript](https://www.javascript.com)
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [react-google-maps-api](https://react-google-maps-api-docs.netlify.app/)
+
+## Backend Overview
+
+Star Yelp uses a Flask backend and utilizes PostgreSQL as its database. It also uses wtfforms as a form package.
+
+Technologies/Frameworks Used
+
+- [Python](https://www.python.org/)
+- [PostgreSQL](https://www.postgresql.org/docs/)
+- [Flask](https://flask.palletsprojects.com/en/2.1.x/)
+- [Wtfforms](https://wtforms.readthedocs.io/)
+- [SQLAlchemy](https://www.sqlalchemy.org/)
+
+The live site is hosted on Heroku using github docker containers.
+
+- [Heroku](https://www.heroku.com)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Star Yelp Setup
+
+1. Clone the repository from: https://github.com/suwanshree/lyber
+2. Install dependencies:
 
    ```bash
    pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
    ```
 
-2. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed.
-3. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer.
-4. Clone the repository (only this branch)
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-5. Open the repo in VS Code.
-6. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner.
-7. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
-
-   **Note:** This will take much less time on future starts because everything will be cached.
-
-8. Once everything is up, be sure to make a `.env` file based on `.env.example` in both the root directory and the _react-app_ directory before running your app. You do not need a `DATABASE_URL` in the `.env` file if you are using this Docker setup for development - the URL is already set in the image (see `.devcontainer/Dockerfile` for the URL).
-
-9. Get into your pipenv, migrate your database, seed your database, and run your flask app
+3. Create a **.env** file based on the example with proper settings for your
+   development environment.
+4. Setup your PostgreSQL user, password and database that matches the **.env** file.
+5. Get into your pipenv, migrate your database, seed your database, and run your flask app:
 
    ```bash
    pipenv shell
@@ -46,63 +117,47 @@ The following instructions detail an _optional_ development setup for M1 Mac use
    flask run
    ```
 
-10. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
-<br>
+<!-- USAGE EXAMPLES -->
 
-## Deploy to Heroku
+## Usage
 
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations.
+- Users can signup and login to use Lyber, and can also use the demo feature to explore the app quickly.
 
-1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
+- Once logged in, the user is directed to the ride page, where logged-in users can view the map component and enter pick-up and drop-off addresses.
 
-2. Create a new project on Heroku.
+(More features to be implemented soon)
 
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-4. Configure production environment variables. In your Heroku app settings -> config variables you should have two environment variables set:
+<!-- FUTURE IMPLEMENTATIONS -->
 
-   | Key            | Value                                            |
-   | -------------- | ------------------------------------------------ |
-   | `DATABASE_URL` | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`   | Random string full of entropy                    |
+## Future Implementations
 
-5. Generate a Heroku OAuth token for your Github Action. To do so, log in to Heroku via your command line with `heroku login`. Once you are logged in, run `heroku authorizations:create`. Copy the GUID value for the Token key.
+- To Be Decided
 
-6. In your Github Actions Secrets you should have two environment variables set. You can set these variables via your Github repository settings -> secrets -> actions. Click "New respository secret" to create
-   each of the following variables:
+<!-- CONTACT -->
 
-   | Key               | Value                            |
-   | ----------------- | -------------------------------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6) |
-   | `HEROKU_APP_NAME` | Heroku app name                  |
+## Contact
 
-7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will _not_ automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
+Suwanshree Acharya - [GitHub](https://github.com/suwanshree)
 
-8. _Attention!_ Please run this command _only if you wish to seed your production database_: `heroku run -a HEROKU_APP_NAME flask seed all`
+Project Repo Link: [https://github.com/suwanshree/lyber](https://github.com/suwanshree/lyber)
 
-9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+Project Link: [https://lyber-rideshare.herokuapp.com/](https://lyber-rideshare.herokuapp.com/)
 
-<br>
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-## Helpful commands
+<!-- ATTRIBUTION -->
 
-| Command                        | Purpose                                                                                                                                      |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pipenv shell`                 | Open your terminal in the virtual environment and be able to run flask commands without a prefix                                             |
-| `pipenv run`                   | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands |
-| `flask db upgrade`             | Check in with the database and run any needed migrations                                                                                     |
-| `flask db downgrade`           | Check in with the database and revert any needed migrations                                                                                  |
-| `flask seed all`               | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details                |
-| `heroku login -i`              | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser                                             |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token                                                                                      |
-| `heroku run -a star-yelp`      | Run a command from within the deployed container on Heroku                                                                                   |
+## Attribution
 
-Attribution for Splash page gif:
+Splash page gif:
 Organizowanie studniówek Katowice, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
 
-Attribution for up arrow png:
+up arrow png:
 <a href="https://www.flaticon.com/free-icons/up-arrow" title="up arrow icons">Up arrow icons created by kliwir art - Flaticon</a>
 
-Attribution for down arrow png:
+down arrow png:
 <a href="https://www.flaticon.com/free-icons/arrows" title="arrows icons">Arrows icons created by lakonicon - Flaticon</a>
