@@ -58,7 +58,7 @@ Lyber, a Lyft / Uber clone, is a full stack ridesharing app for users to input t
 
 ## Frontend Overview
 
-Star Yelp is built on a React frontend and uses an npm package for displaying ratings as stars.
+Lyber is built on a React frontend and uses an npm package for displaying ratings as stars.
 
 Technologies/Frameworks Used
 
@@ -71,7 +71,7 @@ Technologies/Frameworks Used
 
 ## Backend Overview
 
-Star Yelp uses a Flask backend and utilizes PostgreSQL as its database. It also uses wtfforms as a form package.
+Lyber uses a Flask backend and utilizes PostgreSQL as its database. It also uses wtfforms as a form package.
 
 Technologies/Frameworks Used
 
