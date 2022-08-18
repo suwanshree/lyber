@@ -29,7 +29,7 @@
     <li><a href="#key-features">Key Features</a></li>
     <li><a href="#frontend-overview">Frontend Overview</a></li>
     <li><a href="#backend-overview">Backend Overview</a></li>
-    <li><a href="#star-yelp-setup">Star Yelp Setup</a></li>
+    <li><a href="#lyber-setup">Lyber Setup</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#future-implementations">Future Implementations</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -87,7 +87,7 @@ The live site is hosted on Heroku using github docker containers.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-## Star Yelp Setup
+## Lyber Setup
 
 1. Clone the repository from: https://github.com/suwanshree/lyber
 2. Install dependencies:
