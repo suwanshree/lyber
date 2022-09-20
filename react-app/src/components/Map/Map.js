@@ -1,14 +1,8 @@
-import React, {
-  useState,
-  useMemo,
-  useRef,
-  useCallback,
-  useEffect,
-} from "react";
+import React, { useState, useMemo, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Map.css";
 import * as tripActions from "../../store/trip";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import up from "../../images/upward-arrow.png";
 import down from "../../images/down-arrow.png";
 import loadingGif from "../../images/loading.gif";
@@ -17,9 +11,9 @@ import {
   useLoadScript,
   Marker,
   DirectionsService,
-  DirectionsRenderer,
-  MarkerClusterer,
-  InfoWindow,
+  // DirectionsRenderer,
+  // MarkerClusterer,
+  // InfoWindow,
 } from "@react-google-maps/api";
 import {
   Combobox,
@@ -27,7 +21,7 @@ import {
   ComboboxPopover,
   ComboboxList,
   ComboboxOption,
-  ComboboxOptionText,
+  // ComboboxOptionText,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import usePlacesAutocomplete, {
@@ -66,13 +60,13 @@ let price = 0;
 
 const Map = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  // const history = useHistory();
   const [showMarkers, setShowMarkers] = useState(false);
   const [fromMarker, setFromMarker] = useState([]);
   const [toMarker, setToMarker] = useState([]);
   const sessionUser = useSelector((state) => state.session.user);
   const [hasSubmitted, setHasSubmitted] = useState(false);
-  const [directions, setDirections] = useState({});
+  // const [directions, setDirections] = useState({});
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const mapRef = useRef();
@@ -85,9 +79,9 @@ const Map = () => {
   );
   const onLoad = useCallback((map) => (mapRef.current = map), []);
   const trackNewCenter = async () => {
-    const lat = mapRef.current?.getCenter().lat();
-    const lng = mapRef.current?.getCenter().lng();
-    const zoom = mapRef.current?.getZoom();
+    // const lat = mapRef.current?.getCenter().lat();
+    // const lng = mapRef.current?.getCenter().lng();
+    // const zoom = mapRef.current?.getZoom();
   };
 
   const callRide = (e) => {
@@ -118,8 +112,8 @@ const Map = () => {
 
     const directionsService = new DirectionsService();
     console.log(directionsService);
-    const origin = { lat: start_lat, lng: start_lng };
-    const destination = { lat: end_lat, lng: end_lng };
+    // const origin = { lat: start_lat, lng: start_lng };
+    // const destination = { lat: end_lat, lng: end_lng };
 
     // directionsService.route(
     //   {
