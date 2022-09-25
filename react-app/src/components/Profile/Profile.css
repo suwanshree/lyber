@@ -1,6 +1,27 @@
+.single-ride {
+  margin-top: 10px;
+  display: flex;
+  padding: 5px;
+  width: 250px;
+  border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
 @media only screen and (max-width: 400px) {
   #ProfileModal {
     top: 180px;
     right: 95px;
   }
+}
+
+.rides-container {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
