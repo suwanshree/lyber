@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import BackToTop from "../BackToTop";
 import "./Profile.css";
+import defaultMap from "../../images/defaultmap.png";
 
 function Profile() {
   const history = useHistory();
@@ -22,28 +23,37 @@ function Profile() {
       <h1 id="all-listings">Your ride history</h1>
       <div className="rides-container">
         <div className="single-ride">
-          <p>
-            <b>Date: 5/10/2022</b>
-          </p>
-          <p>From: Location A</p>
-          <p>To: Location B</p>
-          <p>Fare: $10.00</p>
+          <div className="ride-details">
+            <p>
+              <b>Date: 5/10/2022</b>
+            </p>
+            <p>From: Location A</p>
+            <p>To: Location B</p>
+            <p>Fare: $10.00</p>
+          </div>
+          <img src={defaultMap} className="default-map" alt="Ride Map"></img>
         </div>
         <div className="single-ride">
-          <p>
-            <b>Date: 6/10/2022</b>
-          </p>
-          <p>From: Location C</p>
-          <p>To: Location D</p>
-          <p>Fare: $15.00</p>
+          <div className="ride-details">
+            <p>
+              <b>Date: 6/10/2022</b>
+            </p>
+            <p>From: Location C</p>
+            <p>To: Location D</p>
+            <p>Fare: $15.00</p>
+          </div>
+          <img src={defaultMap} className="default-map" alt="Ride Map"></img>
         </div>
         <div className="single-ride">
-          <p>
-            <b>Date: 7/10/2022</b>
-          </p>
-          <p>From: Location E</p>
-          <p>To: Location F</p>
-          <p>Fare: $20.00</p>
+          <div className="ride-details">
+            <p>
+              <b>Date: 7/10/2022</b>
+            </p>
+            <p>From: Location E</p>
+            <p>To: Location F</p>
+            <p>Fare: $20.00</p>
+          </div>
+          <img src={defaultMap} className="default-map" alt="Ride Map"></img>
         </div>
       </div>
       <BackToTop />
