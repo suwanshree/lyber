@@ -151,7 +151,7 @@ Project Link: [https://lyber-rideshare.herokuapp.com/](https://lyber-rideshare.h
 
 <!-- ATTRIBUTION -->
 
-## Attribution
+## Assets Attribution
 
 Splash page gif:
 Organizowanie studniówek Katowice, CC BY-SA 4.0 <https://creativecommons.org/licenses/by-sa/4.0>, via Wikimedia Commons
